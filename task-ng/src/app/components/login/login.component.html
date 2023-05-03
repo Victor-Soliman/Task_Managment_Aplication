@@ -1,0 +1,14 @@
+<div class="login-page">
+  <div class="form">
+    <form class="login-form" >
+      <input [(ngModel)]="user.username" type="text" name="username" placeholder="username"/>
+      <input [(ngModel)]="user.password" type="password" name="password" placeholder="password"/>
+      <button type="submit" (click)="userLogin()">login</button>
+    </form>
+    <p class="message">Not registered? <a class="nav-link" routerLink="/app-register"> Create an account</a></p>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+<!--routerLink="/main-window>"-->
+<!--<app-register></app-register>-->
