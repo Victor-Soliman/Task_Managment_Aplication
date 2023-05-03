@@ -1,0 +1,76 @@
+.main-window-page {
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  width: 100%;
+  border: 0;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+/* Style the buttons that are used to open the tab content */
+.main-window-page button {
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #f2f2f2;
+  font-size: 14px;
+}
+
+/* Change background color of buttons on hover */
+.main-window-page button:hover {
+  background-color: #49D49D;
+}
+
+/* Create an active/current tablink class */
+.main-window-page button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.main-window-page-content {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.main-window-page-content {
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+
+.log-out-button {
+  border: none;
+  color: crimson;
+  background: none;
+  cursor: pointer;
+  padding: 45px;
+  display: inline-block;
+  margin: 15px 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  outline: none;
+  position: relative;
+  text-align: center;
+
+}
+
