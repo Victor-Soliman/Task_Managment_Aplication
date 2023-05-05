@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {JwtModule, JwtModuleOptions} from "@auth0/angular-jwt";
+import { MyTasksComponent } from './components/my-tasks/my-tasks.component';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -23,7 +24,9 @@ const JWT_Module_Options: JwtModuleOptions = {
     AppComponent,
     MainWindowComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    MyTasksComponent,
+
   ],
     imports: [
         BrowserModule,

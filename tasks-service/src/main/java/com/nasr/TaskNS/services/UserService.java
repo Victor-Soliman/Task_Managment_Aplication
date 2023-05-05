@@ -4,6 +4,7 @@ import com.nasr.TaskNS.dto.AuthenticationResponse;
 import com.nasr.TaskNS.dto.UserRequestLogin;
 import com.nasr.TaskNS.dto.UserRequestRegister;
 import com.nasr.TaskNS.dto.UserResponse;
+import com.nasr.TaskNS.entity.Users;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,8 +15,12 @@ public interface UserService {
 
     AuthenticationResponse loginUser(UserRequestLogin userRequest);
 
+   Users getUserByEmail(String email);
+
     // after security
 //    UserResponse register(UserRequestRegister userRequest);
 //
 //    AuthenticationResponse loginUser(UserRequestLogin userRequest);
+
+
 }

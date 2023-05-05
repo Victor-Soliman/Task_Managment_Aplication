@@ -1,0 +1,25 @@
+<app-main-window></app-main-window>
+
+
+<h1>My Tasks</h1>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Tasks</th>
+    <th scope="col">Due Date</th>
+    <th scope="col">Subject</th>
+    <th scope="col">Status</th>
+    <button>Actions</button>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let task of tasks">
+    <th scope="row">{{task.id}}</th>
+    <td>{{task.subject}}</td>
+    <td>{{task.dueDate}}</td>
+    <td>{{task.status}}</td>
+  </tr>
+
+  </tbody>
+</table>

@@ -99,4 +99,8 @@ public class UserService implements com.nasr.TaskNS.services.UserService {
         return new AuthenticationResponse(token);
     }
 
+    public Users getUserByEmail(String email){
+       return userRepository.findByEmail(email);
+    }
+
 }

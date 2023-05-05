@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
         console.log(token);
 
         localStorage.setItem('token', token);
+        localStorage.setItem('username', this.user.username); // cand schimbi catre email
         this.router.navigate(['main-window']);
 
       }

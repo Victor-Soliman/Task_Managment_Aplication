@@ -8,12 +8,14 @@ import {
   AuthGuardService as AuthGuard
 } from './services/auth-guard.service';
 import {LoginRegisterGuardService as LoginRegisterGuard} from "./services/login-register-guard.service";
+import {MyTasksComponent} from "./components/my-tasks/my-tasks.component";
 
 
 const routes: Routes = [
   {path: 'main-window', component: MainWindowComponent, canActivate: [AuthGuard]},
   {path: 'app-register', component: RegisterComponent, canActivate: [LoginRegisterGuard]},
   {path: 'app-login', component: LoginComponent, canActivate: [LoginRegisterGuard]},
+  {path: 'app-my-tasks', component: MyTasksComponent},
   {path: '', redirectTo: '/app-login', pathMatch: 'full'}, // this will make the app open on app-login component
 
   {path: '**', redirectTo: ''}

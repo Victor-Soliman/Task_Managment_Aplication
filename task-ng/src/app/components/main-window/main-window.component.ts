@@ -30,4 +30,7 @@ export class MainWindowComponent {
     this.authService.logOut();
   }
 
+  showAllTasks() {
+    console.log(1111);
+  }
 }

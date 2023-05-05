@@ -40,6 +40,28 @@ public class JWTGenerator {
 
         return claims.getSubject();
     }
+    public String getUsernameFromToken(String token) {
+        String username;
+        try {
+            final Claims claims = this.getAllClaimsFromToken(token);
+            username = claims.getSubject();
+        } catch (Exception e) {
+            username = null;
+        }
+        return username;
+    }
+    private Claims getAllClaimsFromToken(String token) {
+        Claims claims;
+        try {
+            claims = Jwts.parser()
+                    .setSigningKey(getSignInkey())
+                    .parseClaimsJws(token)
+                    .getBody();
+        } catch (Exception e) {
+            claims = null;
+        }
+        return claims;
+    }
 
     public boolean validateToken(String token) {
         try {
