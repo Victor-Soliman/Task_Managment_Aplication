@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {User} from "./user";
 
 @Component({
   selector: 'app-root',
@@ -7,10 +6,9 @@ import {User} from "./user";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  bodyText = 'This text can be updated in modal 1';
 
-  constructor() {
-  }
-
+  constructor() { }
   ngOnInit() {
 
   }

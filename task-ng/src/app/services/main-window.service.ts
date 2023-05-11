@@ -1,8 +1,5 @@
 import {Injectable} from '@angular/core';
-import {User} from "../user";
-import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {AuthService} from "./auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +13,5 @@ export class MainWindowService {
   ngOnInit(): void {
 
   }
-
 
 }

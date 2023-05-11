@@ -1,0 +1,60 @@
+<div>
+  <app-main-window></app-main-window>
+  <div>
+
+  </div>
+  <br>
+  <h2>Please Add a new Task below:</h2>
+  <br>
+
+  <!--  <form [formGroup]="myForm">-->
+  <form>
+    <div class="form-group col-md-6">
+      <div>
+        <label for="subject">Subject :</label>
+        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
+               [(ngModel)]="task.subject">
+        <!--        <input type="text" class="form-control" id="subject" placeholder="Subject" [formControlName]="task.subject" ]>-->
+      </div>
+      <div>
+        <label for="due-date">Due Date :</label>
+        <input type="date" class="form-control" name="due-date" id="due-date" placeholder="Due Date"
+               [(ngModel)]="task.dueDate">
+        <!--        <input type="date" class="form-control" id="due-date" placeholder="Due Date" formControlName="dueDate">-->
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="status">Status</label>
+      <!--      <select class="form-control" name="status" id="status" formControlName="status">-->
+      <select class="form-control" name="status" id="status" [(ngModel)]="task.status">
+        <option value="EMPTY"></option>
+        <option value="NEW">NEW</option>
+        <option value="IN_PROGRESS">IN_PROGRESS</option>
+        <option value="DONE">DONE</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="assign-user">Assign To User:</label>
+      <select class="form-control" name="assign-user" id="assign-user" [(ngModel)]="task.clientUserName">
+        <option *ngFor="let user of (users|async)" [value]="user.username">{{user.username}}</option>
+      </select>
+    </div>
+
+
+    <div class="float-middle col-md-6">
+      <div>
+        <button type="submit" class="btn btn-primary" (click)="addNewTask()">Save</button>
+        <button type="button" class="btn btn-dark" routerLink="/app-my-task-page">Back To Task Page</button>
+
+      </div>
+      <br>
+      <br>
+    </div>
+
+
+  </form>
+</div>
+
+<router-outlet></router-outlet>

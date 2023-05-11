@@ -17,6 +17,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -89,8 +90,12 @@ public class UserService implements com.nasr.TaskNS.services.UserService {
     @Override
     public AuthenticationResponse loginUser(UserRequestLogin loginDto) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginDto.getUsername(),
-                        loginDto.getPassword()));
+//                new UsernamePasswordAuthenticationToken(loginDto.getUsername(),
+//                        loginDto.getPassword()));
+                new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
+
+        System.out.println(getUserByEmail(loginDto.getEmail()));
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String token = jwtGenerator.generateToken(authentication);
@@ -99,8 +104,26 @@ public class UserService implements com.nasr.TaskNS.services.UserService {
         return new AuthenticationResponse(token);
     }
 
-    public Users getUserByEmail(String email){
-       return userRepository.findByEmail(email);
+    public Users getUserByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with this email " + email));
+    }
+
+    @Override
+    public UserResponse findUserById(Long id) {
+        Users userFromDB = userRepository.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found by id: " + id));
+        return userResponseMapper.fromEntityToDtoRegister(userFromDB);
+    }
+
+    @Override
+    public String findNameOfUserById(Long id) {
+        return userRepository.findNameOfUserById(id);
+    }
+
+    @Override
+    public List<Users> findAll() {
+        return userRepository.findAll();
     }
 
 }

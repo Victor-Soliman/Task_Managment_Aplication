@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {MyTasksService} from "../../services/my-tasks.service";
-import {MainWindowComponent} from "../main-window/main-window.component";
 import {Task} from "../../Task";
 
 @Component({
@@ -16,7 +15,6 @@ export class MyTasksComponent implements OnInit {
 
   ngOnInit() {
     this.getAllTasksForUser();
-    console.log(this.tasks);
   }
 
   getAllTasksForUser(): void {

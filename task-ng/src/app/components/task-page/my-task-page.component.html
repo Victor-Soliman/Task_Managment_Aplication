@@ -1,0 +1,31 @@
+<app-main-window></app-main-window>
+
+<h1>All Tasks</h1>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Subject</th>
+    <th scope="col">Due Date</th>
+    <th scope="col">Status</th>
+    <th scope="col">Assigned</th>
+  </tr>
+  </thead>
+  <tbody class=".table-hover">
+  <tr *ngFor="let task of tasks">
+    <th scope="row">{{task.id}}</th>
+    <td>{{task.subject}}</td>
+    <td>{{task.dueDate}}</td>
+    <td>{{task.status}}</td>
+    <td>{{task.clientUserName}}</td>
+<!--    <td>{{userName}}</td>-->
+    <div class="my-2 my-lg-0">
+<!--    <button class="btn btn-primary" type="submit" [routerLink]="['/task-details',task.id]" >Task Details</button>-->
+      <a class="btn btn-primary" href="task-details/{{task.id}}">Task Details</a>
+
+    </div>
+  </tr>
+  </tbody>
+</table>
+
+<router-outlet></router-outlet>

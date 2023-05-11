@@ -11,6 +11,7 @@ public class UserRequestMapper {
     public Users fromLoginDtoToEntity(UserRequestLogin userRequest){
         return Users.builder()
                 .username(userRequest.getUsername())
+                .username(userRequest.getEmail()) // CHANGED
                 .password(userRequest.getPassword())
                 .build();
     }
@@ -18,6 +19,7 @@ public class UserRequestMapper {
         return Users.builder()
                 .username(userRequest.getUsername())
                 .password(userRequest.getPassword())
+                .email(userRequest.getEmail()) // changed
                 .email(userRequest.getEmail())
                 .build();
     }

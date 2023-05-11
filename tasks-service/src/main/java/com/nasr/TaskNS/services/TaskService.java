@@ -17,4 +17,12 @@ public interface TaskService {
     List<Tasks> getAllTasks();
 
     List<Tasks> getTasksByEmail(String email);
+
+    Tasks editTask(TaskRequest taskRequest);
+
+    Tasks getTasksById(Long id);
+
+    void deleteTaskById(Long id);
+
+//    List<Tasks> getTasksByParameters(String parameters);
 }

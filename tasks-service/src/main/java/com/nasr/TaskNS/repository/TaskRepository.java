@@ -21,6 +21,12 @@ public interface TaskRepository extends JpaRepository<Tasks, Long> {
 
 //    List<Tasks> findAllByEm
 
-    @Query(value = "SELECT * FROM tasks WHERE assigned_user_id =:id ", nativeQuery = true)
+    @Query(value = "SELECT * FROM tasks WHERE assigned_user_id =:id order by due_date desc ", nativeQuery = true)
     List<Tasks> findAllTasksForUser(Long id);
+
+    Tasks findTasksById(Long id);
+
+
+//    @Query(value = "SELECT * FROM tasks WHERE",nativeQuery = true)
+//    List<Tasks> findAllBySubjectAndDueDateAfterAndStatusOrAssigned(String text);
 }

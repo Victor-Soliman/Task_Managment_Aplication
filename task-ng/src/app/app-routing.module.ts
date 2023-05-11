@@ -9,6 +9,9 @@ import {
 } from './services/auth-guard.service';
 import {LoginRegisterGuardService as LoginRegisterGuard} from "./services/login-register-guard.service";
 import {MyTasksComponent} from "./components/my-tasks/my-tasks.component";
+import {MyTaskPageComponent} from "./components/task-page/my-task-page.component";
+import {TaskDetailsComponent} from "./components/task-details/task-details.component";
+import {AddNewTaskComponent} from "./components/add-new-task/add-new-task.component";
 
 
 const routes: Routes = [
@@ -16,6 +19,12 @@ const routes: Routes = [
   {path: 'app-register', component: RegisterComponent, canActivate: [LoginRegisterGuard]},
   {path: 'app-login', component: LoginComponent, canActivate: [LoginRegisterGuard]},
   {path: 'app-my-tasks', component: MyTasksComponent},
+  {path: 'app-my-task-page', component: MyTaskPageComponent},
+  {path: 'task-details/:id', component: TaskDetailsComponent},
+  {path: 'app-task-details', component: TaskDetailsComponent},
+  {path: 'app-add-new-task', component: AddNewTaskComponent},
+
+
   {path: '', redirectTo: '/app-login', pathMatch: 'full'}, // this will make the app open on app-login component
 
   {path: '**', redirectTo: ''}

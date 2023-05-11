@@ -26,8 +26,9 @@ public class TaskController {
 //    }
     @PostMapping("/add")
     public ResponseEntity<Tasks> addTask(@RequestBody TaskRequest taskRequest) {
+        System.out.println("qqqqqq "+taskRequest + " " + taskRequest.getClientUserName());
         Tasks addedTask = taskService.createTask(taskRequest);
-        return new ResponseEntity<>(addedTask, HttpStatus.OK);
+                return new ResponseEntity<>(addedTask, HttpStatus.OK);
     }
 
     @GetMapping("/all")
@@ -36,16 +37,45 @@ public class TaskController {
         return new ResponseEntity<>(allTasksOrdered, HttpStatus.OK);
     }
 
-//    @GetMapping("/all/{email}")
-//    public ResponseEntity<List<Tasks>> getTasksByEmail(@PathVariable String email) {
-//        List<Tasks> allTasksOrdered = taskService.getTasksByEmail(email);
-//        return new ResponseEntity<>(allTasksOrdered, HttpStatus.OK);
-//    }
+
     @GetMapping("/all/{email}")
-    public List<Tasks> getTasksByEmail(@PathVariable String email) {
+    public ResponseEntity<List<Tasks>> getTasksByEmail(@PathVariable String email) {
         List<Tasks> allTasksOrdered = taskService.getTasksByEmail(email);
-        return allTasksOrdered;
+        return new ResponseEntity<>(allTasksOrdered, HttpStatus.OK);
     }
 
+    @GetMapping("/task-details/{id}")
+    public ResponseEntity<Tasks> getTasksById(@PathVariable Long id) {
+        Tasks taskById = taskService.getTasksById(id);
+        return new ResponseEntity<>(taskById, HttpStatus.OK);
+    }
+//    @GetMapping("/all/{email}")
+//    public List<Tasks> getTasksByEmail(@PathVariable String email) {
+//        List<Tasks> allTasksOrdered = taskService.getTasksByEmail(email);
+//        return allTasksOrdered;
+//    }
+
+
+    // search
+//    @GetMapping("/all/search")
+//    public ResponseEntity<List<Tasks>> getTasksByParameters(@RequestBody String parameters) {
+//        List<Tasks> allTasksOrdered = taskService.getTasksByParameters(parameters);
+//        return new ResponseEntity<>(allTasksOrdered, HttpStatus.OK);
+//    }
+
+
+
+    @PatchMapping("/edit")
+    public ResponseEntity<Tasks> editTask(@RequestBody TaskRequest taskRequest) {
+        Tasks editedTask = taskService.editTask(taskRequest);
+        return new ResponseEntity<>(editedTask, HttpStatus.OK);
+    }
+
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity deleteTask(@PathVariable Long id) {
+        taskService.deleteTaskById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }

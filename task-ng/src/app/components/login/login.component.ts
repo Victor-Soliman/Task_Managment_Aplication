@@ -14,7 +14,8 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 // we create an object of type User
 //   user: User = new User();
-  @Input() user: User = {username: '', password: ''};
+//   @Input() user: User = {username: '', password: ''};
+  @Input() user: User = {email: '', password: ''}; // CHANGED
   public formValidate !: FormGroup;
   public isInvalid !: boolean;
 
@@ -40,12 +41,12 @@ export class LoginComponent implements OnInit {
       inputData => {
         alert("Login Successfully")
 
-
         const token = inputData.accessToken;
         console.log(token);
 
         localStorage.setItem('token', token);
-        localStorage.setItem('username', this.user.username); // cand schimbi catre email
+        // localStorage.setItem('username', this.user.username); // cand schimbi catre email
+        localStorage.setItem('email', this.user.email); // // CHANGED
         this.router.navigate(['main-window']);
 
       }
@@ -53,7 +54,8 @@ export class LoginComponent implements OnInit {
 
     // in order to empty the form after login
     const newUser = {
-      userName: this.user.username,
+      // userName: this.user.username,
+      email: this.user.email,  // CHANGED
       password: this.user.password
     }
 

@@ -1,42 +1,42 @@
 package com.nasr.TaskNS.dto;
 
 import com.nasr.TaskNS.entity.Status;
-import com.nasr.TaskNS.entity.Users;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
 @Getter
 @Setter
-
+@RequiredArgsConstructor
 
 public class TaskRequest {
 
-
+    private Long id;
     private String subject;
     private Date dueDate;
     private Status status;
-    private Long assignedToUserId;
+    private Long userId;
+    private String clientUserName;
 
-    public TaskRequest(Long assignedToUserId) {
-        this.assignedToUserId = assignedToUserId;
+    public TaskRequest(Long userId) {
+        this.userId = userId;
     }
 
     public TaskRequest(String subject,
                        Date dueDate,
                        Status status,
-                       Long assignedToUserId) {
+                       Long userId) {
         this.subject = subject;
         this.dueDate = dueDate;
         this.status = status;
-        this.assignedToUserId = assignedToUserId;
+        this.userId = userId;
+    }
+
+    public TaskRequest(Long id, String subject, Date dueDate, Status status, Long userId) {
+        this.id = id;
+        this.subject = subject;
+        this.dueDate = dueDate;
+        this.status = status;
+        this.userId = userId;
     }
 }

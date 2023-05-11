@@ -2,15 +2,13 @@ package com.nasr.TaskNS.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -65,5 +63,9 @@ public class Users {
 
     public void addTaskToUser(Tasks task) {
         tasks.add(task);
+    }
+
+    public void removeTaskFromAssignedTasks(Tasks task) {
+        tasks.remove(task);
     }
 }

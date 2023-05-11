@@ -1,7 +1,10 @@
+import {Status} from "./Status";
+
 export interface Task {
-  id : number;
-  subject: string;
-  dueDate: string;
-  status: string;
-  userId: number;
+  id?: number;
+  subject?: string;
+  dueDate?: Date;
+  status?: Status;
+  userId?: number;
+  clientUserName?: string;
 }

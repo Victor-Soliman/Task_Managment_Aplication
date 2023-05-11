@@ -3,6 +3,7 @@ package com.nasr.TaskNS.controller;
 //import com.nasr.TaskNS.config.AuthenticationService;
 
 import com.nasr.TaskNS.dto.*;
+import com.nasr.TaskNS.entity.Users;
 import com.nasr.TaskNS.mapper.UserResponseMapper;
 import com.nasr.TaskNS.repository.UserRepository;
 //import com.nasr.TaskNS.security.JWTGenerator;
@@ -19,7 +20,8 @@ import org.springframework.http.ResponseEntity;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpServerErrorException;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -73,7 +75,7 @@ public class UserController {
         System.out.println(registerDto);
         UserResponse registered = userService.register(registerDto);
 
-        return new ResponseEntity<>(registered,HttpStatus.OK);
+        return new ResponseEntity<>(registered, HttpStatus.OK);
     }
 
 
@@ -89,5 +91,19 @@ public class UserController {
         return new ResponseEntity<>(userService.loginUser(loginDto), HttpStatus.OK);
     }
 
+
+    //    @GetMapping("{id}")
+//    public ResponseEntity<UserResponse> findUserById(@PathVariable Long id) {
+//        return new ResponseEntity<>(userService.findUserById(id), HttpStatus.OK);
+//    }
+    @GetMapping("{id}")
+    public ResponseEntity<String> findUserById(@PathVariable Long id) {
+        return new ResponseEntity<>(userService.findNameOfUserById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Users>> findAllUsers() {
+        return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
+    }
 
 }

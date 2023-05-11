@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .requestMatchers("/user/**","/task/**").permitAll()
+                .requestMatchers("/user/**","/task/**","/task/task-details/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();

@@ -23,7 +23,6 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
   registerUser() {
@@ -40,9 +39,6 @@ export class RegisterComponent implements OnInit {
           alert("Register Successfully")
         }
       }
-      // inputData => {
-      //             alert("Register Successfully")
-      // }
     );
 
     // in order to empty the form after login

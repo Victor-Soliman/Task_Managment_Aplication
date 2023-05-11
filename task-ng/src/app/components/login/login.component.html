@@ -1,7 +1,8 @@
 <div class="login-page">
   <div class="form">
     <form class="login-form" >
-      <input [(ngModel)]="user.username" type="text" name="username" placeholder="username"/>
+<!--      <input [(ngModel)]="user.username" type="text" name="username" placeholder="username"/>-->
+      <input [(ngModel)]="user.email" type="text" name="email" placeholder="email address"/>
       <input [(ngModel)]="user.password" type="password" name="password" placeholder="password"/>
       <button type="submit" (click)="userLogin()">login</button>
     </form>

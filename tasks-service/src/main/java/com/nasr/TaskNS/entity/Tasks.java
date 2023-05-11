@@ -1,14 +1,15 @@
 package com.nasr.TaskNS.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.validation.annotation.Validated;
 
+import java.time.LocalDate;
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -38,7 +39,16 @@ public class Tasks {
     public Long getUserId() {
         return assigned.getId();
     }
+
     public Long setUserId(Long id) {
         return assigned.getId();
     }
+
+    public String getClientUserName() {
+        return assigned.getUsername();
+    }
+    public String setClientUserName(String clientName) {
+        return assigned.getUsername();
+    }
+
 }
