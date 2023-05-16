@@ -1,24 +1,26 @@
 <app-main-window></app-main-window>
 
+<div class="wall">
+  <h2 class="text-space">My Tasks</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Tasks</th>
+      <th scope="col">Due Date</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Status</th>
+    </tr>
+    </thead>
+    <tbody>
 
-<h1>My Tasks</h1>
-<table class="table">
-  <thead>
-  <tr>
-    <th scope="col">Tasks</th>
-    <th scope="col">Due Date</th>
-    <th scope="col">Subject</th>
-    <th scope="col">Status</th>
-  </tr>
-  </thead>
-  <tbody>
+    <tr *ngFor="let task of tasks">
+      <th scope="row">{{task.id}}</th>
+      <td>{{task.subject}}</td>
+      <td>{{task.dueDate|date:'yyyy-MM-dd'}}</td>
+      <td>{{task.status}}</td>
+    </tr>
 
-  <tr *ngFor="let task of tasks">
-    <th scope="row">{{task.id}}</th>
-    <td>{{task.subject}}</td>
-    <td>{{task.dueDate}}</td>
-    <td>{{task.status}}</td>
-  </tr>
+    </tbody>
+  </table>
+</div>
 
-  </tbody>
-</table>

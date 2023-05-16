@@ -1,0 +1,67 @@
+<div class="center">
+
+  <h3 class="title">Search for Task:</h3>
+  <br>
+
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit($event)">
+    <div class="form-group col-md-6 ">
+      <div>
+        <label for="subject">Subject :</label>
+        <input type="text" class="form-control"
+               name="subject"
+               id="subject"
+               placeholder="Subject"
+               formControlName="subject">
+      </div>
+
+      <br>
+      <div>
+        <label for="due-date">Due Date After:</label>
+        <input type="date"
+               class="form-control"
+               name="due-date"
+               id="due-date"
+               formControlName="dueDate">
+
+        <br>
+        <div class="form-group col-md-14 ">
+          <label for="status">Status</label>
+          <select class="form-control"
+                  name="status"
+                  id="status"
+                  formControlName="status">
+            <option value="EMPTY"></option>
+            <option value="NEW">NEW</option>
+            <option value="IN_PROGRESS">IN_PROGRESS</option>
+            <option value="DONE">DONE</option>
+          </select>
+        </div>
+
+        <br>
+        <div class="form-group col-md-14">
+          <label for="assign-user">Assign To User:</label>
+          <select class="form-control"
+                  name="assign-user"
+                  id="assign-user"
+                  formControlName="clientUserName">
+            <option *ngFor="let user of (users|async)" [value]="user.username">{{user.username}}</option>
+          </select>
+        </div>
+
+        <br>
+        <div class="float-middle col-md-8">
+          <div>
+            <button type="submit" class="btn-margin btn btn-primary btn-space">Search</button>
+            <button type="button" class="btn btn-danger me-auto" (click)="onReset()">Clear</button>
+          </div>
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+<router-outlet></router-outlet>
+

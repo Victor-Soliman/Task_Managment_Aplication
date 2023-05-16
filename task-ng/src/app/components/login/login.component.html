@@ -1,15 +1,49 @@
-<div class="login-page">
-  <div class="form">
-    <form class="login-form" >
-<!--      <input [(ngModel)]="user.username" type="text" name="username" placeholder="username"/>-->
-      <input [(ngModel)]="user.email" type="text" name="email" placeholder="email address"/>
-      <input [(ngModel)]="user.password" type="password" name="password" placeholder="password"/>
-      <button type="submit" (click)="userLogin()">login</button>
-    </form>
-    <p class="message">Not registered? <a class="nav-link" routerLink="/app-register"> Create an account</a></p>
+
+<div class="body">
+  <div class="login-page">
+    <div class="form">
+      <form class="login-form" #myForm="ngForm" (ngSubmit)="!myForm.invalid && userLogin()">
+        <input [(ngModel)]="user.email"
+               id="email"
+               type="text"
+               name="email"
+               placeholder="email address"
+               required
+               #email="ngModel"
+        />
+        <div *ngIf="email.invalid && (email.dirty || email.touched)">
+          <div *ngIf="email.errors?.['required']" class="text-danger">
+            Email is required!
+          </div>
+        </div>
+
+        <input [(ngModel)]="user.password"
+               id="password"
+               type="password"
+               name="password"
+               placeholder="password"
+               required
+               minlength="8"
+               #password="ngModel"
+        />
+        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+          <div *ngIf="password.errors?.['required']" class="text-danger">
+            Password is required!
+          </div>
+          <div *ngIf="password.errors?.['minlength']" class="text-danger">
+            Password Should be minimum 8 characters!
+          </div>
+          <br>
+        </div>
+
+        <button type="submit" [disabled]="!myForm.form.valid" >login</button>
+      </form>
+      <p class="message">Not registered? <a class="nav-link" routerLink="/app-register"> Create an account</a></p>
+    </div>
   </div>
+
+
 </div>
 
 <router-outlet></router-outlet>
-<!--routerLink="/main-window>"-->
-<!--<app-register></app-register>-->
+

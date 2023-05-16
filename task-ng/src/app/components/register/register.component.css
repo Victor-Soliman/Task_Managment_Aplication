@@ -1,18 +1,13 @@
-/*.font-family:   "Roboto";*/
-/*$font-size:     14px;*/
-
-/*$color-primary: #ABA194;*/
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
+.body {
   font-family: "Arial Black";
   font-size: medium;
-  background-size: 200% 100% !important;
+  background-size: 100% 100% !important;
   animation: move 10s ease infinite;
   transform: translate3d(0, 0, 0);
   background: linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
@@ -22,7 +17,8 @@ body {
 .users {
   width: 90%;
   max-width: 340px;
-  margin: 10vh auto;
+  margin:auto;
+
 }
 
 .user__header {
@@ -40,7 +36,7 @@ body {
 }
 
 .form {
-  margin-top: 40px;
+  margin-top: 80px;
   border-radius: 6px;
   overflow: hidden;
   opacity: 0;
@@ -80,8 +76,6 @@ body {
   padding: 15px;
   color: #FFFFFF;
   font-size: 14px;
-  /*-webkit-transition: all 0.3 ease;*/
-  /*transition: all 0.3 ease;*/
   cursor: pointer;
 }
 

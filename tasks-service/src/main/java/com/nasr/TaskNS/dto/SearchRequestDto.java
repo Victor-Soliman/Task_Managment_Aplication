@@ -1,7 +1,9 @@
 package com.nasr.TaskNS.dto;
 
 import com.nasr.TaskNS.entity.Status;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
@@ -9,13 +11,10 @@ import java.util.Date;
 @Setter
 @RequiredArgsConstructor
 
-public class TaskRequest {
+public class SearchRequestDto {
 
-    private Long id;
     private String subject;
     private Date dueDate;
     private Status status;
-    private Long userId;
     private String clientUserName;
-
 }

@@ -3,7 +3,6 @@ package com.nasr.TaskNS.security;
 import com.nasr.TaskNS.entity.Role;
 import com.nasr.TaskNS.entity.Users;
 import com.nasr.TaskNS.repository.UserRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -17,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-/*@AllArgsConstructor*/
+
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;

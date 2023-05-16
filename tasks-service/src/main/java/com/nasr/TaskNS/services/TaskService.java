@@ -1,5 +1,6 @@
 package com.nasr.TaskNS.services;
 
+import com.nasr.TaskNS.dto.SearchRequestDto;
 import com.nasr.TaskNS.dto.TaskRequest;
 import com.nasr.TaskNS.entity.Tasks;
 import org.springframework.stereotype.Service;
@@ -8,11 +9,7 @@ import java.util.List;
 
 @Service
 public interface TaskService {
-//    Tasks addTask(TaskRequest taskRequest);
     Tasks createTask(TaskRequest taskRequest);
-
-
-//    List<Tasks> getAllTasksOrdered(Long user_id);
 
     List<Tasks> getAllTasks();
 
@@ -24,5 +21,5 @@ public interface TaskService {
 
     void deleteTaskById(Long id);
 
-//    List<Tasks> getTasksByParameters(String parameters);
+    List<Tasks> search(SearchRequestDto taskDto);
 }

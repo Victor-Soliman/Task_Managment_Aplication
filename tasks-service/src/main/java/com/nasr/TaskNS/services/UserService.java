@@ -1,10 +1,8 @@
 package com.nasr.TaskNS.services;
 
-import com.nasr.TaskNS.dto.AuthenticationResponse;
-import com.nasr.TaskNS.dto.UserRequestLogin;
-import com.nasr.TaskNS.dto.UserRequestRegister;
-import com.nasr.TaskNS.dto.UserResponse;
+import com.nasr.TaskNS.dto.*;
 import com.nasr.TaskNS.entity.Users;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.List;
 public interface UserService {
 
     // before security
-    UserResponse register(UserRequestRegister userRequest);
+    ResponseEntity<MessageResponse> register(UserRequestRegister userRequest);
 
     AuthenticationResponse loginUser(UserRequestLogin userRequest);
 
@@ -25,10 +23,6 @@ public interface UserService {
 
     List<Users> findAll();
 
-    // after security
-//    UserResponse register(UserRequestRegister userRequest);
-//
-//    AuthenticationResponse loginUser(UserRequestLogin userRequest);
-
+    Boolean checkEmailExists(String email);
 
 }

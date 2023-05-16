@@ -1,7 +1,4 @@
 import {Component} from '@angular/core';
-import {MainWindowService} from "../../services/main-window.service";
-import {Router} from "@angular/router";
-import {UserRegister} from "../../registerUser";
 import {AuthService} from "../../services/auth.service";
 
 @Component({
@@ -10,27 +7,15 @@ import {AuthService} from "../../services/auth.service";
   styleUrls: ['./main-window.component.css']
 })
 export class MainWindowComponent {
-  loggedInUser: UserRegister = {};
-
-  constructor(private authService: AuthService,
-              private mainWindowService: MainWindowService,
-              private router: Router) {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
 
   }
 
-  goToMainWindow() {
-
-  }
-
   logoutUser(): void {
-    // return this.httpClient.get(`${this.url}`);
     this.authService.logOut();
   }
 
-  showAllTasks() {
-    console.log(1111);
-  }
 }

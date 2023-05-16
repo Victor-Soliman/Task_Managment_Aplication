@@ -1,0 +1,16 @@
+.center {
+  margin: auto 700px;
+  width: 50%;
+  padding: 10px;
+}
+
+.title{
+  margin-left: 15px;
+}
+.btn-margin {
+  margin-left: -15px;
+}
+
+.btn-space {
+  margin-right: 16px;
+}

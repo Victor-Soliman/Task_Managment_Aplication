@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class UserRequestLogin {
-//    private Long id;
-    private String username; // here we use the email as value
-    private String email; // CHANGED
+    private String username;
+    private String email;
     private String password;
 }

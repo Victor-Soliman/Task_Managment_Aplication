@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Task} from "../Task";
-import {User} from "../user";
+import {Task} from "../interfaces/Task";
+import {User} from "../interfaces/user";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class MyTaskPageService {
   private MY_PAGE_TASK_URL: string = "http://localhost:8080/task";
   private GET_TASK_BY_ID: string = "http://localhost:8080/task/task-details";
   private GET_ALL_USERS: string = "http://localhost:8080/user/all";
+  private SEARCH_TASKS: string = "http://localhost:8080/task/search"
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -52,7 +53,12 @@ export class MyTaskPageService {
     return this.httpClient.patch<Task>(
       this.MY_PAGE_TASK_URL + "/edit", task
     )
+  }
 
+  searchForTasks(task: Task): Observable<Task[]> {
+    return this.httpClient.post<Task[]>(
+      this.SEARCH_TASKS, task
+    )
   }
 
   deleteTaskById(id: number): Observable<Task> {

@@ -1,31 +1,37 @@
 <app-main-window></app-main-window>
+<div class="wall">
 
-<h1>All Tasks</h1>
-<table class="table table-hover">
-  <thead>
-  <tr>
-    <th scope="col">ID</th>
-    <th scope="col">Subject</th>
-    <th scope="col">Due Date</th>
-    <th scope="col">Status</th>
-    <th scope="col">Assigned</th>
-  </tr>
-  </thead>
-  <tbody class=".table-hover">
-  <tr *ngFor="let task of tasks">
-    <th scope="row">{{task.id}}</th>
-    <td>{{task.subject}}</td>
-    <td>{{task.dueDate}}</td>
-    <td>{{task.status}}</td>
-    <td>{{task.clientUserName}}</td>
-<!--    <td>{{userName}}</td>-->
-    <div class="my-2 my-lg-0">
-<!--    <button class="btn btn-primary" type="submit" [routerLink]="['/task-details',task.id]" >Task Details</button>-->
-      <a class="btn btn-primary" href="task-details/{{task.id}}">Task Details</a>
+  <button class="btn btn-success center" (click)="showSearchBox()">{{searchButtonLabel}}</button>
+  <app-search *ngIf="showSearchComponent" (searchEvent)="searchTask($event)"></app-search>
 
-    </div>
-  </tr>
-  </tbody>
-</table>
+  <br><br><br>
+  <h2 class="text-space">All Tasks:</h2>
+  <br>
+
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Due Date</th>
+      <th scope="col">Status</th>
+      <th scope="col">Assigned</th>
+    </tr>
+    </thead>
+
+    <tbody class=".table-hover">
+    <tr *ngFor="let task of tasks">
+      <th scope="row">{{task.id}}</th>
+      <td>{{task.subject}}</td>
+      <td>{{task.dueDate|date:'yyyy-MM-dd'}}</td>
+      <td>{{task.status}}</td>
+      <td>{{task.clientUserName}}</td>
+      <div class="my-2 my-lg-0">
+        <a class="btn btn-primary" href="task-details/{{task.id}}">Task Details</a>
+      </div>
+    </tr>
+    </tbody>
+  </table>
+</div>
 
 <router-outlet></router-outlet>

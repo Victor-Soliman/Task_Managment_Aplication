@@ -1,12 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MyTaskPageService} from "../../services/my-task-page.service";
-import {Task} from "../../Task";
+import {Task} from "../../interfaces/Task";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {DatePipe} from "@angular/common";
 import {Observable, of} from "rxjs";
-import {User} from "../../user";
-import {Status} from "../../Status";
+import {User} from "../../interfaces/user";
+import {Status} from "../../interfaces/Status";
 
 @Component({
   selector: 'app-task-details',

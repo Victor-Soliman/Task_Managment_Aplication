@@ -1,9 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {User} from "../../user";
+import {User} from "../../interfaces/user";
 import {LoginUserService} from "../../services/login-user.service";
-import {UserRegister} from "../../registerUser";
-// import {mockUser} from "../../mock-user";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
 
 @Component({
@@ -12,25 +10,15 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-// we create an object of type User
-//   user: User = new User();
-//   @Input() user: User = {username: '', password: ''};
-  @Input() user: User = {email: '', password: ''}; // CHANGED
-  public formValidate !: FormGroup;
-  public isInvalid !: boolean;
+
+  @Input() user: User = {email: '', password: ''};
 
   constructor(private userService: LoginUserService,
               private formBuilder: FormBuilder,
               private router: Router) {
-    // localStorage.clear();
   }
 
   ngOnInit() {
-    // this.userLogin();
-    // this.formValidate = this.formBuilder.group({
-    //   username: [this.user.username, Validators.required],
-    //   password: [this.user.password, Validators.required]
-    // })
   }
 
 
@@ -46,24 +34,9 @@ export class LoginComponent implements OnInit {
 
         localStorage.setItem('token', token);
         // localStorage.setItem('username', this.user.username); // cand schimbi catre email
-        localStorage.setItem('email', this.user.email); // // CHANGED
-        this.router.navigate(['main-window']);
-
+        localStorage.setItem('email', this.user.email);
+        this.router.navigate(['app-my-tasks']);
       }
       , error => alert("Please Enter correct credentials"));
-
-    // in order to empty the form after login
-    const newUser = {
-      // userName: this.user.username,
-      email: this.user.email,  // CHANGED
-      password: this.user.password
-    }
-
   }
-
-  userRegister(): void {
-    console.log(this.user);
-  }
-
-
 }

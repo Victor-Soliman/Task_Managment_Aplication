@@ -1,6 +1,7 @@
 package com.nasr.TaskNS.controller;
 
 
+import com.nasr.TaskNS.dto.SearchRequestDto;
 import com.nasr.TaskNS.dto.TaskRequest;
 import com.nasr.TaskNS.entity.Tasks;
 import com.nasr.TaskNS.services.TaskService;
@@ -19,16 +20,10 @@ public class TaskController {
 
     private final TaskService taskService;
 
-    //    @PostMapping("/add")
-//    public ResponseEntity<Tasks> addTask(@RequestBody TaskRequest taskRequest) {
-//        Tasks addedTask = taskService.addTask(taskRequest);
-//        return new ResponseEntity<>(addedTask, HttpStatus.OK);
-//    }
     @PostMapping("/add")
     public ResponseEntity<Tasks> addTask(@RequestBody TaskRequest taskRequest) {
-        System.out.println("qqqqqq "+taskRequest + " " + taskRequest.getClientUserName());
         Tasks addedTask = taskService.createTask(taskRequest);
-                return new ResponseEntity<>(addedTask, HttpStatus.OK);
+        return new ResponseEntity<>(addedTask, HttpStatus.OK);
     }
 
     @GetMapping("/all")
@@ -49,19 +44,13 @@ public class TaskController {
         Tasks taskById = taskService.getTasksById(id);
         return new ResponseEntity<>(taskById, HttpStatus.OK);
     }
-//    @GetMapping("/all/{email}")
-//    public List<Tasks> getTasksByEmail(@PathVariable String email) {
-//        List<Tasks> allTasksOrdered = taskService.getTasksByEmail(email);
-//        return allTasksOrdered;
-//    }
-
 
     // search
-//    @GetMapping("/all/search")
-//    public ResponseEntity<List<Tasks>> getTasksByParameters(@RequestBody String parameters) {
-//        List<Tasks> allTasksOrdered = taskService.getTasksByParameters(parameters);
-//        return new ResponseEntity<>(allTasksOrdered, HttpStatus.OK);
-//    }
+    @PostMapping("/search")
+    public ResponseEntity<List<Tasks>> search(@RequestBody SearchRequestDto taskDto) {
+        List<Tasks> returnedTasks = taskService.search(taskDto);
+        return new ResponseEntity<>(returnedTasks, HttpStatus.OK);
+    }
 
 
 

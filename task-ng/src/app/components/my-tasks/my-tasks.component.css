@@ -1,0 +1,10 @@
+.wall{
+  background-color: blanchedalmond;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.text-space {
+  margin-left: 16px;
+}

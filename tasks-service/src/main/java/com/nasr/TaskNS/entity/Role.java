@@ -20,8 +20,6 @@ public class Role {
 
     @Column(name = "name")
     private String name;
-//     USER;
-//     ADMIN;
 
 
 

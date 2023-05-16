@@ -1,9 +1,6 @@
 package com.nasr.TaskNS.services.impl;
 
-import com.nasr.TaskNS.dto.AuthenticationResponse;
-import com.nasr.TaskNS.dto.UserRequestLogin;
-import com.nasr.TaskNS.dto.UserRequestRegister;
-import com.nasr.TaskNS.dto.UserResponse;
+import com.nasr.TaskNS.dto.*;
 import com.nasr.TaskNS.entity.Role;
 import com.nasr.TaskNS.entity.Users;
 import com.nasr.TaskNS.mapper.UserRequestMapper;
@@ -13,6 +10,8 @@ import com.nasr.TaskNS.repository.UserRepository;
 import com.nasr.TaskNS.security.JWTGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -39,59 +38,29 @@ public class UserService implements com.nasr.TaskNS.services.UserService {
     private final AuthenticationManager authenticationManager;
     private final JWTGenerator jwtGenerator;
 
-
-    // before security
-//    @Override
-//    public UserResponse register(UserRequestRegister registerDto) {
-//        Users user = userRequestMapper.fromRegisterDtoToEntity(registerDto);
-//        Users savedUsers = userRepository.save(user);
-//        log.info("User Successfully saved in DB");
-//        return userResponseMapper.fromEntityToDtoRegister(savedUsers);
-//    }
-//
-//    @Override
-//    public UserResponse loginUser(UserRequestLogin userRequest) {
-//        System.out.println(userRequest);
-//        Users UserByUsernameAndPassword = userRepository.findByUsernameAndPassword(
-//                userRequest.getUsername(),userRequest.getPassword()).orElseThrow(
-//                () -> new EntityExistsException("user not found in the database"));
-//        return userResponseMapper.fromEntityToDtoLogIn(UserByUsernameAndPassword);
-//    }
-
-
     @Override
-    public UserResponse register(UserRequestRegister registerDto) {
-        // check if it is in the db
+    public ResponseEntity<MessageResponse> register(UserRequestRegister registerDto) {
+            if (checkEmailExists(registerDto.getEmail())){
+                return new ResponseEntity<>(new MessageResponse("Email already exists"),HttpStatus.BAD_REQUEST);
+            }
 
-//  if (userRepository.existsByUsername(registerDto.getUsername())) {
-//                return new ResponseEntity<String>("Username is taken!", HttpStatus.BAD_REQUEST);
-//            }
-
-        // if it is not set the name & password
-//        Users user = new Users();
         Users user = userRequestMapper.fromRegisterDtoToEntity(registerDto);
-//        user.setUsername(registerDto.getUsername());
+
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
 
-        // set roles : if you want to make some admin -> you add logic here
-
-
         Role roles = roleRepository.findByName("USER").get();
-        user.setRoles(Collections.singletonList(roles)); // this is the that you set roles
+        user.setRoles(Collections.singletonList(roles));
 
+        userRepository.save(user);
 
-        Users savedUser = userRepository.save(user);
-
-        // in case i want to crate jwt
-        return userResponseMapper.fromEntityToDtoRegister(savedUser);
+        return new ResponseEntity<>(new MessageResponse("Registered with success"),HttpStatus.OK);
 
     }
 
     @Override
     public AuthenticationResponse loginUser(UserRequestLogin loginDto) {
         Authentication authentication = authenticationManager.authenticate(
-//                new UsernamePasswordAuthenticationToken(loginDto.getUsername(),
-//                        loginDto.getPassword()));
+
                 new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
 
         System.out.println(getUserByEmail(loginDto.getEmail()));
@@ -100,7 +69,6 @@ public class UserService implements com.nasr.TaskNS.services.UserService {
 
         String token = jwtGenerator.generateToken(authentication);
 
-//        return new ResponseEntity<>("User signedIn Success", HttpStatus.OK);
         return new AuthenticationResponse(token);
     }
 
@@ -124,6 +92,12 @@ public class UserService implements com.nasr.TaskNS.services.UserService {
     @Override
     public List<Users> findAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public Boolean checkEmailExists(String email) {
+        System.out.println(userRepository.existsByEmail(email));
+        return userRepository.existsByEmail(email);
     }
 
 }

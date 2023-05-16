@@ -1,70 +1,73 @@
-<div class="users">
-  <header class="user__header">
-    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3219/logo.svg" alt="" />
-    <h1 class="user__title">SIGN-UP </h1>
-  </header>
+<div class="body">
 
-<!--  <form class="form" (ngSubmit)="registerUser(userRegister)">-->
-  <form class="form" >
-    <div class="form__group">
-      <input [(ngModel)]="userRegister.username" type="text" name="username" placeholder="Username" class="form__input" />
-    </div>
+  <div class="users">
+    <header class="user__header">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3219/logo.svg" alt=""/>
+      <h1 class="user__title">SIGN-UP </h1>
+    </header>
 
-    <div class="form__group">
-      <input [(ngModel)]="userRegister.email" type="email" name="email" placeholder="Email" class="form__input" />
-    </div>
+    <form class="form" #myForm="ngForm" (ngSubmit)="!myForm.invalid && registerUser()">
+      <div class="form__group">
+        <input [(ngModel)]="userRegister.username"
+               id="username"
+               type="text"
+               name="username"
+               placeholder="Username"
+               class="form__input"
+               required
+               #username="ngModel"
+        />
+      </div>
+      <div *ngIf="username.invalid && (username.dirty || username.touched)">
+        <div *ngIf="username.errors?.['required']" class="text-danger">
+          Username is required!
+        </div>
+      </div>
 
-    <div class="form__group">
-      <input [(ngModel)]="userRegister.password" type="password" name="password" placeholder="Password" class="form__input" />
-    </div>
 
-    <button class="btn" type="button" (click)="registerUser()">Register</button>
-<!--    <button class="btn" type="submit">Register</button>-->
-  </form>
+      <input [(ngModel)]="userRegister.email"
+             id="email"
+             type="email"
+             name="email"
+             placeholder="Email"
+             class="form__input"
+             required
+             pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+             #email="ngModel"/>
+
+      <div *ngIf="email.invalid && (email.dirty || email.touched)">
+        <div *ngIf="email.errors?.['required']" class="text-danger">
+          Email is required!
+        </div>
+        <div *ngIf="email.errors?.['pattern']" class="text-danger">
+          You've entered invalid email!
+        </div>
+      </div>
+      <div *ngIf="showErrMsg"><p class="text-danger">{{serverMsg}}</p></div>
+
+      <input [(ngModel)]="userRegister.password"
+             id="password"
+             type="password"
+             name="password"
+             placeholder="Password"
+             class="form__input"
+             required
+             minlength="8"
+             #password="ngModel"/>
+
+      <div *ngIf="password.invalid && (password.dirty || password.touched)">
+        <div *ngIf="password.errors?.['required']" class="text-danger">
+          Password is required!
+        </div>
+        <div *ngIf="password.errors?.['minlength']" class="text-danger">
+          Minimum password length is 8
+        </div>
+
+      </div>
+
+      <button class="btn" type="submit" [disabled]="!myForm.form.valid">Register</button>
+    </form>
+  </div>
+
 </div>
 
-
-<!--<div class="container">-->
-<!--  <div class="card my-5">-->
-<!--    <div class="card-body">-->
-<!--      <h2>Register</h2>-->
-<!--      <form (ngSubmit)="registerUser()" #userForm="ngForm">-->
-<!--        <div class="form-group">-->
-<!--          <label for="username">User name</label>-->
-<!--          <input type="text" [(ngModel)]="userRegister.username"-->
-<!--                 class="form-control"-->
-<!--                 id="username"-->
-<!--                 name="username"-->
-<!--                 placeholder="Enter your user name"-->
-
-<!--                 required #username="ngModel">-->
-<!--        </div>-->
-<!--        <div [hidden]="!username.pristine" class="alert alert-danger">User name is required</div>-->
-<!--        <div class="form-group">-->
-<!--          <label for="email">Email</label>-->
-<!--          <input type="email" [(ngModel)]="userRegister.email"-->
-<!--                 class="form-control"-->
-<!--                 id="email"-->
-<!--                 name="email"-->
-<!--                 placeholder="Enter your email address"-->
-<!--                 required #email="ngModel">-->
-<!--          <div [hidden]="!email.pristine" class="alert alert-danger">Email is required</div>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--          <label for="password">Password</label>-->
-<!--          <input type="password" [(ngModel)]="userRegister.password"-->
-<!--                 class="form-control"-->
-<!--                 id="password"-->
-<!--                 name="password"-->
-<!--                 placeholder="Enter your password"-->
-<!--                 minlength="6"-->
-<!--                 required #password="ngModel">-->
-<!--          <div [hidden]="!password.pristine" class="alert alert-danger">Password is required</div>-->
-<!--        </div>-->
-<!--        <button type="submit" [disabled]="!userForm.form.valid"-->
-<!--                class="btn btn-info">Submit</button>-->
-<!--      </form>-->
-<!--&lt;!&ndash;      <a routerLink="/login">Already have an account? Click here to login!</a>&ndash;&gt;-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->

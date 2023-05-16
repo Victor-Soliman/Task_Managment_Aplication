@@ -8,7 +8,6 @@ import {LoginComponent} from './components/login/login.component';
 import {MyTasksComponent} from './components/my-tasks/my-tasks.component';
 import {MyTaskPageComponent} from './components/task-page/my-task-page.component';
 import { TaskDetailsComponent } from './components/task-details/task-details.component';
-// import { EditComponent } from './components/edit/edit.component';
 import { AddNewTaskComponent } from './components/add-new-task/add-new-task.component';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -19,6 +18,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 import {DatePipe} from "@angular/common";
+import { SearchComponent } from './components/search/search.component';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -39,6 +39,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     TaskDetailsComponent,
 
     AddNewTaskComponent,
+      SearchComponent,
 
   ],
     imports: [

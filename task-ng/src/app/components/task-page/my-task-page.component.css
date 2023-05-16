@@ -1,0 +1,21 @@
+.wall{
+  background-color: blanchedalmond;
+  height: 300vh;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+
+.center {
+  margin: auto 1810px;
+  width: 4%;
+  padding: 10px 5px;
+  margin-top: 5px;
+}
+
+
+.text-space {
+  margin-left: 16px;
+}
+

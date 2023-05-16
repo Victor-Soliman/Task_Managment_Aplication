@@ -16,7 +16,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-//public class UserEntity implements UserDetails {
 public class Users {
     public Users(String username,
                  String password,
@@ -35,7 +34,7 @@ public class Users {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(name = "username")
+    @Column(name = "username",unique = true)
     private String username;
 
     @Column(name = "userPassword")
@@ -43,11 +42,8 @@ public class Users {
     // we called it userPassword not password in order to avoid the collision with the
     // method coming from UserDetalis in security
 
-    @Column(name = "email")
+    @Column(name = "email",unique = true)
     private String email;
-
-//    @Enumerated(EnumType.STRING)
-//    private Role role;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),

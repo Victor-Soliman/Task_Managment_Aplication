@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MyTasksService} from "../../services/my-tasks.service";
-import {Task} from "../../Task";
+import {Task} from "../../interfaces/Task";
 
 @Component({
   selector: 'app-my-tasks',
@@ -22,6 +22,4 @@ export class MyTasksComponent implements OnInit {
       returnedTasks => this.tasks = returnedTasks
     )
   }
-
-
 }
