@@ -3,6 +3,7 @@ package com.nasr.TaskNS.repository;
 import com.nasr.TaskNS.entity.Status;
 import com.nasr.TaskNS.entity.Tasks;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Tasks, Long> {
-    @Query(value = "SELECT * FROM tasks WHERE assigned_user_id =:id order by due_date desc ", nativeQuery = true)
+    @Query(value = "SELECT * FROM tasks WHERE assigned_user_id =:id ORDER BY due_date DESC ", nativeQuery = true)
     List<Tasks> findAllTasksForUser(Long id);
 
     Tasks findTasksById(Long id);
@@ -31,4 +32,6 @@ public interface TaskRepository extends JpaRepository<Tasks, Long> {
                              @Param("dueDate") Date dueDate,
                              @Param("status") Status status,
                              @Param("clientUserName") String clientUserName);
+
+
 }

@@ -15,12 +15,14 @@ import {Status} from "../../interfaces/Status";
 })
 export class TaskDetailsComponent implements OnInit {
   myForm !: FormGroup;
-  private status?: string;
-  private errorMessage?: string;
   task !: Task;
   users: Observable<User[]> = of([]);
   statuses = Object.values(Status);
+  // for edit
   editMode: boolean = false;
+  // for delete
+  private status?: string;
+  private errorMessage?: string;
 
 
   constructor(private myTaskPageService: MyTaskPageService,
@@ -57,6 +59,7 @@ export class TaskDetailsComponent implements OnInit {
   deleteTask() {
     const id: number = Number(this.route.snapshot.paramMap.get('id'))
     if(confirm("Are you sure you want to delete this task?"))
+
       this.myTaskPageService.deleteTaskById(id).subscribe({
       next: data => {
         this.status = 'Delete successful';

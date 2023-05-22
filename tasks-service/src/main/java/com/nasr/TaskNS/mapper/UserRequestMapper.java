@@ -11,7 +11,7 @@ public class UserRequestMapper {
         return Users.builder()
                 .username(userRequest.getUsername())
                 .password(userRequest.getPassword())
-                .email(userRequest.getEmail()) // changed
+                .email(userRequest.getEmail())
                 .email(userRequest.getEmail())
                 .build();
     }

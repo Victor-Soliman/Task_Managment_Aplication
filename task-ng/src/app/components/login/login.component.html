@@ -9,8 +9,7 @@
                name="email"
                placeholder="email address"
                required
-               #email="ngModel"
-        />
+               #email="ngModel"/>
         <div *ngIf="email.invalid && (email.dirty || email.touched)">
           <div *ngIf="email.errors?.['required']" class="text-danger">
             Email is required!
@@ -36,7 +35,7 @@
           <br>
         </div>
 
-        <button type="submit" [disabled]="!myForm.form.valid" >login</button>
+        <button type="submit">login</button>
       </form>
       <p class="message">Not registered? <a class="nav-link" routerLink="/app-register"> Create an account</a></p>
     </div>

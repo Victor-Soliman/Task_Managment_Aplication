@@ -24,13 +24,10 @@ public class TaskService implements com.nasr.TaskNS.services.TaskService {
     @Override
     public Tasks createTask(TaskRequest taskDTO) {
         Tasks task = new Tasks();
-        // get the user from db based on id , you don't need to send the hole user
-        Users user = userRepository.findByUsername(taskDTO.getClientUserName()).get();
+        Users user = userRepository
+                .findByUsername(taskDTO.getClientUserName()).get();
         // set the task payload information
-        task.setSubject(taskDTO.getSubject());
-        task.setDueDate(taskDTO.getDueDate());
-        task.setStatus(taskDTO.getStatus());
-        task.setAssigned(user);
+        setTaskProperties(taskDTO, task, user);
 
         taskRepository.save(task); // save task in db
         user.addTaskToUser(task); // add the task to user
@@ -39,8 +36,10 @@ public class TaskService implements com.nasr.TaskNS.services.TaskService {
         return task;
     }
 
+
     @Override
     public List<Tasks> getAllTasks() {
+
         return taskRepository.findAll();
     }
 
@@ -53,24 +52,13 @@ public class TaskService implements com.nasr.TaskNS.services.TaskService {
     @Override
     public Tasks editTask(TaskRequest taskRequest) {
         Tasks taskFromDB = taskRepository.findTasksById(taskRequest.getId());
-        Long userId = taskFromDB.getUserId();
-        Users initialUser = userRepository.findById(userId).get();
+        taskFromDB.setSubject(taskRequest.getSubject());
+        taskFromDB.setDueDate(taskRequest.getDueDate());
+        taskFromDB.setStatus(taskRequest.getStatus());
+        String clientUserName = taskRequest.getClientUserName();
 
-        taskFromDB.setSubject(taskRequest.getSubject() == null ? taskFromDB.getSubject()
-                : taskRequest.getSubject());
-        taskFromDB.setDueDate(taskRequest.getDueDate() == null ? taskFromDB.getDueDate()
-                : taskRequest.getDueDate());
-        taskFromDB.setStatus(taskRequest.getStatus() == null ? taskFromDB.getStatus()
-                : taskRequest.getStatus());
-
-        if (!initialUser.getUsername().equals(taskRequest.getClientUserName())) {
-            initialUser.removeTaskFromAssignedTasks(taskFromDB);
-            userRepository.save(initialUser);
-            Users currentUser = userRepository.findByUsername(taskRequest.getClientUserName()).get();
-            currentUser.addTaskToUser(taskFromDB);
-            userRepository.save(currentUser);
-            taskFromDB.setAssigned(currentUser);
-        }
+        Users assigned = userRepository.findByUsername(clientUserName).get();
+        taskFromDB.setAssigned(assigned);
 
         taskRepository.save(taskFromDB);
         return taskFromDB;
@@ -102,4 +90,13 @@ public class TaskService implements com.nasr.TaskNS.services.TaskService {
                 taskDto.getStatus(),
                 taskDto.getClientUserName());
     }
+
+    // helper
+    private static void setTaskProperties(TaskRequest taskDTO, Tasks task, Users user) {
+        task.setSubject(taskDTO.getSubject());
+        task.setDueDate(taskDTO.getDueDate());
+        task.setStatus(taskDTO.getStatus());
+        task.setAssigned(user);
+    }
+
 }

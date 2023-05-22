@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@Validated
+@Validated // not used yet, you can use it in case you want to validate the entry parameters
 @RequestMapping(value = "/user")
 @CrossOrigin(value = {"*"})
 public class UserController {

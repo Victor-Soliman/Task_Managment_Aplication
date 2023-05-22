@@ -54,16 +54,14 @@ public class UserService implements com.nasr.TaskNS.services.UserService {
         userRepository.save(user);
 
         return new ResponseEntity<>(new MessageResponse("Registered with success"),HttpStatus.OK);
-
     }
 
     @Override
     public AuthenticationResponse loginUser(UserRequestLogin loginDto) {
         Authentication authentication = authenticationManager.authenticate(
-
                 new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
 
-        System.out.println(getUserByEmail(loginDto.getEmail()));
+//        System.out.println(getUserByEmail(loginDto.getEmail()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -96,7 +94,6 @@ public class UserService implements com.nasr.TaskNS.services.UserService {
 
     @Override
     public Boolean checkEmailExists(String email) {
-        System.out.println(userRepository.existsByEmail(email));
         return userRepository.existsByEmail(email);
     }
 

@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+//@ToString
 
 
 @Entity
@@ -27,6 +28,10 @@ public class Users {
         this.email = email;
         this.roles = roles;
         this.tasks = tasks;
+    }
+
+    public Users(String email) {
+        this.email = email;
     }
 
     @Id
@@ -51,8 +56,9 @@ public class Users {
     private List<Role> roles = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
-    @JoinTable(name = "user_task", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            cascade = CascadeType.REMOVE)
+    @JoinTable(name = "user_task",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "task_id", referencedColumnName = "task_id"))
     @JsonIgnore
     private List<Tasks> tasks;
